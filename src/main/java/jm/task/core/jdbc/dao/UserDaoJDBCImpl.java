@@ -63,10 +63,6 @@ public class UserDaoJDBCImpl implements UserDao {
                 String name = resultSet.getString("name");
                 String lastName = resultSet.getString("lastName");
                 Byte age = resultSet.getByte("age");
-                //System.out.println("id: " + id);
-                //System.out.println("Name: " + name);
-                //System.out.println("Lastname: " + lastName);
-                //System.out.println("Age " + age);
 
                 users.add(new User( name, lastName, age));
             }
@@ -79,9 +75,11 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void removeUserById(long id) {
+        String sql ="DELETE FROM users WHERE id = ?";
         try (Connection conn = Util.getConnection();
-             Statement stat = conn.createStatement()) {
-            stat.executeUpdate("DELETE FROM users WHERE id = id;");
+             PreparedStatement prepStat = conn.prepareStatement(sql)) {
+            prepStat.setLong(1, id);
+            prepStat.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
