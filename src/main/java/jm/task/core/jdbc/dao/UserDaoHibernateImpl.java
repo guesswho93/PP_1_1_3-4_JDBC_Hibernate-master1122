@@ -79,7 +79,7 @@ public class UserDaoHibernateImpl implements UserDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            
+
             e.printStackTrace();
         }
     }
