@@ -15,7 +15,7 @@ import java.sql.Statement;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws SQLException, IOException {
+    public static void main(String[] args) throws SQLException {
 
         UserDao userDao = new UserDaoHibernateImpl();
 
